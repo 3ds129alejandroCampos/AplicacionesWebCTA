@@ -34,12 +34,12 @@ public class ControllerTienda {
     }
 
     @GetMapping("/productos/{nombre}")
-    public ResponseEntity<Optional<Producto>> busquedaProducto(@RequestParam String nombre){
+    public ResponseEntity<Optional<Producto>> busquedaProducto(@PathVariable String nombre){
         return ResponseEntity.status(200).body(serviceTienda.busquedaProducto(nombre));
     }
 
     @DeleteMapping("/productos/{nombre}")
-    public String eliminacionProducto(@RequestParam String nombre){
+    public String eliminacionProducto(@PathVariable String nombre){
         return serviceTienda.eliminarProducto(nombre);
     }
 

@@ -43,7 +43,7 @@ public class RepositoryTienda implements Repository{
     @Override
     public String deleteProducto(String nombre) {
        Optional<Producto> encontrado= findByNombre(nombre);
-       if(!encontrado.isPresent()) {
+       if(encontrado.isPresent()) {
            Optional<Producto> eliminarProducto = encontrado.map(
                    producto -> {
                        productos.remove(producto.getIdProducto());
