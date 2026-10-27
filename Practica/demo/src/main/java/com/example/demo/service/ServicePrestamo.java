@@ -76,4 +76,23 @@ public class ServicePrestamo {
         List<Estados> estados = List.of(Estados.PRESTADO,Estados.VENCIDO);
         return repositoryPrestamo.findByEstadoIn(estados);
     }
+
+
+    @Transactional
+    public Prestamo renovarPrestamo(Long id) {
+
+        Prestamo prestamo = repositoryPrestamo.findById(id).orElseThrow(()-> new RuntimeException("Id de prestamo invalido"));
+
+
+
+       if(prestamo.getEstado()==Estados.DEVUELTO||prestamo.getEstado()==Estados.VENCIDO){
+           throw new ReglaDeNegocio("Prestamo en estado vencido o devuelto");
+       }
+
+       LocalDate fecchaNueva = prestamo.getFechaDevolucionMaxima().plusDays(7);
+
+        prestamo.setFechaDevolucionMaxima(fecchaNueva);
+
+        return repositoryPrestamo.save(prestamo);
+    }
 }

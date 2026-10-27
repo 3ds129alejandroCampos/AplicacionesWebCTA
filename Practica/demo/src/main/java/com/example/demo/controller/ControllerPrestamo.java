@@ -32,4 +32,9 @@ public class ControllerPrestamo {
         return ResponseEntity.status(200).body( servicePrestamo.obtenerPrestamos());
     }
 
+    @PatchMapping("/{id}/renovar")
+    public ResponseEntity<Prestamo> renovarPrestamo(@PathVariable Long id){
+        return ResponseEntity.ok( servicePrestamo.renovarPrestamo(id));
+    }
+
 }
