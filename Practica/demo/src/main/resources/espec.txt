@@ -1,0 +1,30 @@
+SERVICIOS Y PUNTUACIÓN
+
+1. solicitarPrestamo → ⭐ 50 pts
+Debe hacer:
+Validar que el lector exista y esté activo.
+Validar que el libro exista y tenga por lo menos 1 ejemplarDisponible.
+Regla de negocio: Validar que el lector no tenga más de 3 préstamos activos (PRESTADO o VENCIDO) al mismo tiempo. Si es un lector membresiaPremium == true, el límite sube a 5 préstamos.
+Restar 1 al contador de ejemplaresDisponibles del libro.
+Crear el registro de Prestamo:
+fechaPrestamo = Fecha actual.
+fechaDevolucionMaxima = Fecha actual + 14 días.
+estado = PRESTADO.
+2. devolverLibro → ⭐ 30 pts
+Debe hacer:
+Validar que el préstamo exista y su estado actual sea PRESTADO o VENCIDO.
+Cambiar el estado del préstamo a DEVUELTO.
+Sumar 1 al contador de ejemplaresDisponibles del libro devuelto.
+Regla de negocio: Si la fecha actual es posterior a la fechaDevolucionMaxima, el préstamo se considera que estuvo vencido. Como penalización, cambiar el estado del lector a activo = false (bloqueado por entrega tardía).
+3. renovarPrestamo → ⭐ 15 pts
+Debe hacer:
+Validar que el préstamo exista.
+Validar que el préstamo NO esté en estado VENCIDO o DEVUELTO (un libro ya vencido no se puede renovar).
+Sumar 7 días extras a la fechaDevolucionMaxima actual.
+4. rehabilitarLector → ⭐ 10 pts
+Debe hacer:
+Validar que el lector exista.
+Cambiar el estado del lector a activo = true (para desbloquear a los que entregaron tarde).
+5. listarPrestamosActivosLector → ⭐ 10 pts
+Debe hacer:
+Listar todos los préstamos de un lector específico cuyo estado sea PRESTADO o VENCIDO.

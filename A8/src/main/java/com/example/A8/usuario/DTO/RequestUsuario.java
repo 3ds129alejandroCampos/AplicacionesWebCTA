@@ -1,6 +1,6 @@
 package com.example.A8.usuario.DTO;
 
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RequestUsuario {
 
-
-    @Size(min = 3,max = 40,message = "Longitud de nombre fuera de lo permitido")
-    String nombre;
-
+    @NotBlank(message = "El nombre no puede estar vacío")
+    @Size(min = 3, max = 40, message = "Longitud de nombre fuera de lo permitido")
+    private String nombre;
 }

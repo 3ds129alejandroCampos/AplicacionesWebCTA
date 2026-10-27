@@ -1,8 +1,7 @@
 package com.example.A8.usuario.model;
 
-
 import com.example.A8.ticket.model.Ticket;
-import jakarta.annotation.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,7 +25,7 @@ public class Usuario {
     @Column(nullable = false)
     private boolean activo;
 
-
     @OneToMany(mappedBy = "usuario")
-    private List<Ticket> partidas;
+    @JsonIgnore
+    private List<Ticket> tickets;
 }

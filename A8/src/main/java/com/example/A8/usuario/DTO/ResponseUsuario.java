@@ -1,6 +1,5 @@
 package com.example.A8.usuario.DTO;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ResponseUsuario {
-
-    String nombre;
-
-    boolean activo;
+    private Long id;
+    private String nombre;
+    private boolean activo;
 }
