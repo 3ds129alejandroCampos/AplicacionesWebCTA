@@ -16,4 +16,7 @@ public interface RepositoryPrestamo extends JpaRepository<Prestamo,Long> {
     List<Prestamo> findByLectorIdAndEstadoIn(Long id,List<Estados> estados);
 
     List<Prestamo> findByEstadoIn(List<Estados> estados);
-}
+
+
+    List<Prestamo> findByEstadoIn(Estados estados);
+    }

@@ -95,4 +95,27 @@ public class ServicePrestamo {
 
         return repositoryPrestamo.save(prestamo);
     }
+
+    public Prestamo devolverLibro(Long id) {
+        Prestamo prestamo = repositoryPrestamo.findById(id).orElseThrow(()-> new RuntimeException("Id de prestamo invalido"));
+
+        if(prestamo.getEstado()==Estados.DEVUELTO){
+            throw new RuntimeException("Libro ya devuelto");
+        }
+
+        prestamo.setEstado(Estados.DEVUELTO);
+
+        Libro libro = prestamo.getLibro();
+
+        libro.setEjemplaresDisponibles(libro.getEjemplaresDisponibles()+1);
+
+        repositoryLibro.save(libro);
+
+        if(LocalDate.now().isAfter(prestamo.getFechaDevolucionMaxima()) ){
+            Lector lector = prestamo.getLector();
+            lector.setActivo(false);
+            repositoryLector.save(lector);
+        }
+        return repositoryPrestamo.save(prestamo);
+    }
 }

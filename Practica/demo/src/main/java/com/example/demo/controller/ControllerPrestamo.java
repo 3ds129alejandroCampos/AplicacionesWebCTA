@@ -37,4 +37,14 @@ public class ControllerPrestamo {
         return ResponseEntity.ok( servicePrestamo.renovarPrestamo(id));
     }
 
+    @PatchMapping("/{id}/devolver")
+    public ResponseEntity <Prestamo> devolverLibro(@PathVariable Long id){
+        return ResponseEntity.ok( servicePrestamo.devolverLibro(id)  );
+    }
+
+    @PatchMapping("/sanciones")
+    public ResponseEntity<List<Prestamo>> aplicarSancionesDiarias(){
+
+    }
+
 }
