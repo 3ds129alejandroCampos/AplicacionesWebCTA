@@ -7,10 +7,9 @@ import com.example.demo.service.ServicePrestamo;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/prestamo")
@@ -27,4 +26,10 @@ public class ControllerPrestamo {
     public ResponseEntity<Prestamo> crearPrestamo(@Valid @RequestBody RequestPrestamoNuevo  payload){
         return ResponseEntity.status(201).body((servicePrestamo.crearNuevoPrestamo(payload)));
     }
+
+    @GetMapping
+    public ResponseEntity<List<Prestamo>> listaDePrestamos(){
+        return ResponseEntity.status(200).body( servicePrestamo.obtenerPrestamos());
+    }
+
 }

@@ -71,4 +71,9 @@ public class ServicePrestamo {
         return repositoryPrestamo.save(prestamo);
 
     }
+
+    public List<Prestamo> obtenerPrestamos() {
+        List<Estados> estados = List.of(Estados.PRESTADO,Estados.VENCIDO);
+        return repositoryPrestamo.findByEstadoIn(estados);
+    }
 }
